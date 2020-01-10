@@ -4,32 +4,68 @@
   <div class="card mx-xl-5">
     <!-- Card body -->
     <div class="card-body">
-      <form>
-        <p class="h4 text-center mb-4">Sign in</p>
-        <label for="defaultFormLoginEmailEx" class="grey-text">Your email</label>
-        <input type="email" id="defaultFormLoginEmailEx" class="form-control" />
+      <form v-on:submit.prevent="logUser">
+        <p class="h4 text-center mb-4"></p>
+        <label for="txtUsername" class="grey-text">Your username</label>
+        <input type="text" id="txtUsername" class="form-control" v-model="txtName" />
         <br />
         <label for="defaultFormLoginPasswordEx" class="grey-text">Your password</label>
-        <input type="password" id="defaultFormLoginPasswordEx" class="form-control" />
+        <input
+          type="password"
+          id="defaultFormLoginPasswordEx"
+          class="form-control"
+          v-model="txtPassword"
+        />
         <div class="text-center mt-4">
           <button class="btn btn-indigo" type="submit">Login</button>
-          <router-link to="/register">Oi</router-link>
+          <router-link to="/register">Não tem conta? Clique aqui</router-link>
         </div>
       </form>
     </div>
   </div>
   <!-- Default form login -->
 </template>
-<!--
+
 <script>
 export default {
-  data:{
-    loggedUser:"",
-    loggedPassword:"",
+  name: "loggedUser",
+  data: function() {
+    return {
+      txtName: "",
+      txtPassword: "",
+      listUsers: [],
+      checked: false
+    };
+  },
+  created() {
+    this.listUsers = this.$store.getters.getAllUsers;
+  },
+  methods: {
+    checkCredentials() {
+      if (this.listUsers.length) {
+        for (const user of this.listUsers) {
+          if (
+            user.username == this.txtName &&
+            user.password == this.txtPassword
+          ) {
+            this.checked = true;
+          } else {
+            this.checked = false;
+            alert("Credenciais incorrectas");
+          }
+        }
+      }
+    },
+    logUser() {
+      this.checkCredentials();
+      if (this.checked == true) {
+        this.$route.push({ name: "home" });
+        //this.$store.state.loggedUser = this.txtName;
+      }
+    }
   }
-}
+};
 </script>
 
 <style>
-
-</style> -->
+</style> 

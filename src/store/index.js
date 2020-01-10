@@ -5,36 +5,24 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    /**loggedUser:"",
-    lastUserId:0,
-    lastLocationId:0,
-    listUsers:[],
-    listLocaitons:[],*/
-
+    loggedUser: "",
+    listUsers: [],
+    listLocations: [],
+    listRoutes:[],
+  },
+  getters: {
+    getLoggedUser: state => state.loggedUser,
+    getAllUsers: state =>state.listUsers,
   },
   mutations: {
-    /**INCREMENT_USER_ID(){
-      state.lastUserId++
-    },
-    INCREMENT_LOCATION_ID(){
-      state.lastLocationId++
-    },
-    ADD_USER(newUser){
-      state.listUsers.push(newUser)
-    },
-    
 
-  },
-  actions: {
-    incrementUserId(context){
-      context.commit("INCREMENT_USER_ID");
+    ADD_USER(state, payload) {
+      state.listUsers.push(payload)
+      //localStorage.setItem("users",JSON.stringify(payload))
     },
-    incrementLocationId(context){
-      context.commit("INCREMENT_LOCATION_ID");
-    },
-    addNewUser(context){
-      context.commit("ADD_USER");
+    ADD_ROUTE(state,payload){
+      state.listRoutes.push(payload)
     }
-    */
+
   },
 });

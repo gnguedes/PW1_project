@@ -11,11 +11,11 @@
 
 <script>
 import NavBar from "@/components/NavBar.vue";
-import routeForm from "@/components/newRouteForm.vue";
+import routeForm from "@/components/newRoute.vue";
 export default {
   components: {
     NavBar,
-    routeForm
+    routeForm,
   }
 };
 </script>
