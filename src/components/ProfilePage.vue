@@ -1,12 +1,9 @@
 <template>
   <div>
-      <h1>Ola</h1>
+    <h1>Ola</h1>
   </div>
 </template>
 
-<script>
-</script>
+<script></script>
 
-<style>
-
-</style>
+<style></style>

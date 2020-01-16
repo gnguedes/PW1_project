@@ -1,10 +1,10 @@
 <template>
   <div class="home">
     <!-- Renders the navbar -->
-    <NavBar/>
+    <NavBar />
     <!-- Renders the welcome message -->
     <div class="container" style="margin-top:80px">
-      <routeForm/>
+      <routeForm />
     </div>
   </div>
 </template>
@@ -15,7 +15,7 @@ import routeForm from "@/components/newRoute.vue";
 export default {
   components: {
     NavBar,
-    routeForm,
+    routeForm
   }
 };
 </script>

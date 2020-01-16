@@ -28,7 +28,6 @@ const routes = [
     name: "users",
     component: UserProfile
   }
-
 ];
 
 const router = new VueRouter({

@@ -1,8 +1,8 @@
 <template>
   <div>
-      <navBar/>
+    <navBar />
     <h5>Seja bem vindo {{}}</h5>
-    
+
     <profilePage />
   </div>
 </template>
@@ -20,6 +20,4 @@ export default {
 };
 </script>
 
-<style>
-
-</style>
+<style></style>

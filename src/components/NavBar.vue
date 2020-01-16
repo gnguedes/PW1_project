@@ -16,9 +16,9 @@
         <router-link to="/User/:userId">Perfil</router-link>
       </li>
       <li class="nav-item" v-for="user in listUsers" :key="user.id">
-        <router-link
-          :to="{name: 'user', params: {userId: user.id}}"
-        >{{user.txtName}}</router-link>
+        <router-link :to="{ name: 'user', params: { userId: user.id } }">{{
+          user.txtName
+        }}</router-link>
       </li>
     </ul>
   </nav>
@@ -27,11 +27,11 @@
 export default {
   data: function() {
     return {
-      listUsers: [],
+      listUsers: []
     };
   },
   created() {
-    this.listUsers = this.$store.getters.getAllUsers
+    this.listUsers = this.$store.getters.getAllUsers;
   }
 };
 </script>

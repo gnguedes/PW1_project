@@ -24,19 +24,15 @@
 </template>
 <script>
 export default {
-  name:"newRoute",
-  data: function () {
-    return{
-      numPeople:0,
-      dateArrival:"",
-      dateDepartude:"",
-      typeRoute:"",
-    }
+  name: "newRoute",
+  data: function() {
+    return {
+      numPeople: 0,
+      dateArrival: "",
+      dateDepartude: "",
+      typeRoute: ""
+    };
   },
-  methods:{
-    
-  }
+  methods: {}
 };
-  
-
 </script>

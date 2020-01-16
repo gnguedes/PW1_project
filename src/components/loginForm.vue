@@ -7,9 +7,16 @@
       <form v-on:submit.prevent="logUser">
         <p class="h4 text-center mb-4"></p>
         <label for="txtUsername" class="grey-text">Your username</label>
-        <input type="text" id="txtUsername" class="form-control" v-model="txtName" />
+        <input
+          type="text"
+          id="txtUsername"
+          class="form-control"
+          v-model="txtName"
+        />
         <br />
-        <label for="defaultFormLoginPasswordEx" class="grey-text">Your password</label>
+        <label for="defaultFormLoginPasswordEx" class="grey-text"
+          >Your password</label
+        >
         <input
           type="password"
           id="defaultFormLoginPasswordEx"
@@ -31,6 +38,7 @@ export default {
   name: "loggedUser",
   data: function() {
     return {
+      loggedId: "",
       txtName: "",
       txtPassword: "",
       listUsers: [],
@@ -44,11 +52,9 @@ export default {
     checkCredentials() {
       if (this.listUsers.length) {
         for (const user of this.listUsers) {
-          if (
-            user.username == this.txtName &&
-            user.password == this.txtPassword
-          ) {
+          if (user.Name == this.txtName && user.Password == this.txtPassword) {
             this.checked = true;
+            this.loggedId = user.id;
           } else {
             this.checked = false;
             alert("Credenciais incorrectas");
@@ -60,12 +66,11 @@ export default {
       this.checkCredentials();
       if (this.checked == true) {
         this.$route.push({ name: "home" });
-        //this.$store.state.loggedUser = this.txtName;
+        this.$store.state.loggedUserId = this.loggedId;
       }
     }
   }
 };
 </script>
 
-<style>
-</style> 
+<style></style>
