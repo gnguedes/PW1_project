@@ -12,13 +12,15 @@
       <li class="nav-item">
         <router-link to="/register">back to register</router-link>
       </li>
-      <li class="nav-item">
-        <router-link to="/User/:userId">Perfil</router-link>
-      </li>
-      <li class="nav-item" v-for="user in listUsers" :key="user.id">
-        <router-link :to="{ name: 'user', params: { userId: user.id } }">{{
-          user.txtName
-        }}</router-link>
+      <li class="nav-item" v-for="user in filterUsers" :key="user.id">
+        <router-link :to="{name: 'users', params: {userId: user.id}}">{{user.Name}}</router-link>
+        <v-row align="center">
+          <v-col class="text-center" cols="12" sm="4">
+            <div class="my-2">
+              <v-btn color="error" v-on:click="logoutUser()">Logout</v-btn>
+            </div>
+          </v-col>
+        </v-row>
       </li>
     </ul>
   </nav>
@@ -27,11 +29,32 @@
 export default {
   data: function() {
     return {
+      loggedUserId: "",
       listUsers: []
     };
   },
   created() {
     this.listUsers = this.$store.getters.getAllUsers;
+    this.loggedUserId = this.$store.getters.getLoggedUserId;
+  },
+  methods: {
+    logoutUser() {
+      let msg = confirm("Gostaria de terminar a sessão?");
+      if (msg == true) {
+        (this.$store.state.loggedUserId = ""), this.$router.push({ path: "/" });
+      }
+    }
+  },
+  computed: {
+    filterUsers() {
+      return this.listUsers.filter(user => {
+        let filteredUserResult = true;
+        if (this.loggedUserId !== "") {
+          filteredUserResult = user.id == this.loggedUserId;
+        }
+        return filteredUserResult;
+      });
+    }
   }
 };
 </script>

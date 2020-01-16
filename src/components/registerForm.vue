@@ -57,34 +57,36 @@ export default {
         alert("Passwords têm de ser iguais");
         this.userChecked = false;
       }
-    }
-  },
-  //verificar se o nome de utilizador esta disponivel
-  checkUsername() {
-    if (this.listUsers.length) {
-      for (const user of this.listUsers) {
-        if (user.txtName == this.txtName) {
-          (this.userChecked = false), alert("nome de utilizador indisponivel");
-        } else {
-          this.userChecked = true;
+    },
+
+    //verificar se o nome de utilizador esta disponivel
+    checkUsername() {
+      if (this.listUsers.length) {
+        for (const user of this.listUsers) {
+          if (user.Name == this.txtName) {
+            (this.userChecked = false),
+              alert("nome de utilizador indisponivel");
+          } else {
+            this.userChecked = true;
+          }
         }
       }
-    }
-  },
-  //enviar o utilizador para a loja se nao houver erros
-  pushUser() {
-    this.checkPassword();
-    this.checkUsername();
-    if (this.userChecked == true) {
-      this.$store.commit("ADD_USER", {
-        id: this.getLastId() + 1,
-        Name: this.txtName,
-        Email: this.txtEmail,
-        Password: this.txtPassword
-      });
-      this.$router.push({ name: "login" });
-    } else {
-      alert("erro no registo");
+    },
+    //enviar o utilizador para a loja se nao houver erros
+    pushUser() {
+      this.checkPassword();
+      this.checkUsername();
+      if (this.userChecked == true) {
+        this.$store.commit("ADD_USER", {
+          id: this.getLastId() + 1,
+          Name: this.txtName,
+          Email: this.txtEmail,
+          Password: this.txtPassword
+        });
+        this.$router.push({ name: "login" });
+      } else {
+        alert("erro no registo");
+      }
     }
   }
 };

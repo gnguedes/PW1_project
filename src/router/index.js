@@ -4,6 +4,7 @@ import Home from "../views/Home.vue";
 import Login from "../views/Login.vue";
 import Register from "../views/Register.vue";
 import UserProfile from "../views/UserProfile.vue";
+//import LandingPage from "../views/LandingPage.vue";
 
 Vue.use(VueRouter);
 
@@ -27,7 +28,13 @@ const routes = [
     path: "/user/:userId",
     name: "users",
     component: UserProfile
-  }
+  },
+  /** 
+    path:"/landingPage",
+    name:"landingPage",
+    component: LandingPage
+    */
+  
 ];
 
 const router = new VueRouter({

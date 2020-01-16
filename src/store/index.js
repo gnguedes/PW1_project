@@ -18,8 +18,8 @@ export default new Vuex.Store({
     listRoutes: []
   },
   getters: {
-    getLoggedUser: state => state.loggedUser,
-    getAllUsers: state => state.listUsers
+    getLoggedUserId: state => state.loggedUserId,
+    getAllUsers: state => state.listUsers,
   },
   mutations: {
     ADD_USER(state, payload) {

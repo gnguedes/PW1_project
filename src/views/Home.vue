@@ -12,10 +12,12 @@
 <script>
 import NavBar from "@/components/NavBar.vue";
 import routeForm from "@/components/newRoute.vue";
+//import footer from "@/components/footer.vue";
 export default {
   components: {
     NavBar,
-    routeForm
+    routeForm,
+    //footer
   }
 };
 </script>
