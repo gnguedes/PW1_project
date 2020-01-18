@@ -1,7 +1,9 @@
 <template>
   <div class="login">
     <h1>Smart_route</h1>
-    <loginForm msg="login Page" />
+    <div>
+      <loginForm />
+    </div>
   </div>
 </template>
 

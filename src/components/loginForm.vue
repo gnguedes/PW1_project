@@ -17,8 +17,10 @@
           v-model="txtPassword"
         />
         <div class="text-center mt-4">
-          <button class="btn btn-indigo" type="submit">Login</button>
-          <router-link to="/register">Não tem conta? Clique aqui</router-link>
+          <v-btn type="submit">Login</v-btn>
+          <br>
+          <br>
+          <v-btn to="/register">Não tem conta? Clique aqui</v-btn>
         </div>
       </form>
     </div>

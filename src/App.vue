@@ -1,8 +1,6 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Register</router-link>|
-      <router-link to="/home">List</router-link>
     </div>
     <router-view />
   </div>
@@ -18,7 +16,8 @@
 }
 
 #nav {
-  padding: 30px;
+  padding: 25px;
+  width: 50%;
 }
 
 #nav a {

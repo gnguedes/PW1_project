@@ -1,5 +1,6 @@
 <template>
   <div class="signUp">
+    <h3>Registo</h3>
     <registerForm />
   </div>
 </template>

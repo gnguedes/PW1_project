@@ -4,6 +4,7 @@ import Home from "../views/Home.vue";
 import Login from "../views/Login.vue";
 import Register from "../views/Register.vue";
 import UserProfile from "../views/UserProfile.vue";
+import AdminPage from "../views/AdminPage.vue";
 //import LandingPage from "../views/LandingPage.vue";
 
 Vue.use(VueRouter);
@@ -34,6 +35,11 @@ const routes = [
     name:"landingPage",
     component: LandingPage
     */
+   {
+     path:"/adminPage",
+     name: "adminPage",
+     component: AdminPage
+   },
   
 ];
 
