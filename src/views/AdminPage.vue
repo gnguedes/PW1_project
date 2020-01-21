@@ -2,7 +2,6 @@
   <div>
     <navBar />
     <br>
-    <br>
     <h1>Área de administrador</h1>
     <manageUsers/>
   </div>

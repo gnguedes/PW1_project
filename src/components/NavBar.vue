@@ -14,14 +14,8 @@
       </li>
       <li class="nav-item" v-for="user in filterUsers" :key="user.id">
         <router-link :to="{name: 'users', params: {userId: user.id}}">{{user.Name}}</router-link>
-        <v-row align="center">
-          <v-col class="text-center" cols="12" sm="4">
-            <div class="my-2">
-              <v-btn color="error" v-on:click="logoutUser()">Logout</v-btn>
-            </div>
-          </v-col>
-        </v-row>
       </li>
+      <v-btn color v-on:click="logoutUser()">Logout</v-btn>
     </ul>
   </nav>
 </template>

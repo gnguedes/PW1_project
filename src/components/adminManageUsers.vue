@@ -24,7 +24,7 @@
             <td>{{user.Name}}</td>
             <td>{{user.Email}}</td>
             <td>
-              <button v-on:click="removeUser(user.Name)">REMOVER</button>
+              <v-btn v-on:click="removeUser(user.Name)">REMOVER</v-btn>
             </td>
           </tr>
         </tbody>

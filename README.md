@@ -1,3 +1,9 @@
+Smart_route
+
+Smart_route é uma aplicação capaz de gerar itinerários, de forma automática, tendo em
+conta a localização do utilizador
+
+
 # smart_route
 
 ## Project setup

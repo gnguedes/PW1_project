@@ -20,6 +20,7 @@ export default new Vuex.Store({
   getters: {
     getLoggedUserId: state => state.loggedUserId,
     getAllUsers: state => state.listUsers,
+    getAllRoutes: state => state.listRoutes,
   },
   mutations: {
     ADD_USER(state, payload) {
