@@ -1,23 +1,32 @@
 <template>
-  <!-- Renders the navbar with the respective router-links -->
-  <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
-    <a class="navbar-brand">smart_route</a>
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <router-link to="/home">Home</router-link>
-      </li>
-      <li class="nav-item">
-        <router-link to="/">back to login</router-link>
-      </li>
-      <li class="nav-item">
-        <router-link to="/register">back to register</router-link>
-      </li>
-      <li class="nav-item" v-for="user in filterUsers" :key="user.id">
-        <router-link :to="{name: 'users', params: {userId: user.id}}">{{user.Name}}</router-link>
-      </li>
-      <v-btn color v-on:click="logoutUser()">Logout</v-btn>
-    </ul>
-  </nav>
+  <div>
+    <b-navbar toggleable="lg" type="dark" variant="dark" fixed="top">
+      <b-navbar-brand href="#">Smart_route</b-navbar-brand>
+
+      <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+
+      <b-collapse type="dark" id="nav-collapse" is-nav>
+        <b-navbar-nav>
+          <b-nav-item to="/Home">Home</b-nav-item>
+          <b-nav-item >Disabled</b-nav-item>
+        </b-navbar-nav>
+
+        <!-- Right aligned nav items -->
+        <b-navbar-nav class="ml-auto">
+
+          <b-nav-item-dropdown right>
+            <!-- Using 'button-content' slot -->
+            <template v-slot:button-content>
+              <em v-for="user in filterUsers" :key="user.id">
+                <v-btn :to="{name: 'users', params: {userId: user.id}}">{{user.Name}}</v-btn>
+              </em>
+            </template>
+            <b-dropdown-item v-on:click="logoutUser()">Sign Out</b-dropdown-item>
+          </b-nav-item-dropdown>
+        </b-navbar-nav>
+      </b-collapse>
+    </b-navbar>
+  </div>
 </template>
 <script>
 export default {
@@ -52,3 +61,4 @@ export default {
   }
 };
 </script>
+

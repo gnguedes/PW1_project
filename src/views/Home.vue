@@ -3,7 +3,7 @@
     <!-- Renders the navbar -->
     <NavBar />
     <!-- Renders the welcome message -->
-    <div class="container" style="margin-top:80px">
+    <div class="container" style="margin-top:50px">
       <routeForm />
     </div>
     <footerPP />

@@ -1,35 +1,44 @@
 <template>
-  <v-footer dark padless>
-    <v-card flat tile class="indigo lighten-1 white--text text-center">
-      <v-card-text>
-        <v-btn v-for="icon in icons" :key="icon" class="mx-4 white--text" icon>
-          <v-icon size="24px">{{ icon }}</v-icon>
-        </v-btn>
-      </v-card-text>
+  <!-- Footer -->
+  <footer class="page-footer font-small teal pt-4">
+    <!-- Footer Text -->
+    <div class="container-fluid text-center text-md-left">
+      <!-- Grid row -->
+      <div class="row">
+        <!-- Grid column -->
+        <div class="col-md-6 mt-md-0 mt-3">
+          <!-- Content -->
+          <h5 class="text-uppercase font-weight-bold">Footer text 1</h5>
+          <p>
+           Este projeto foi desenvolvido no âmbito da disciplina de 
+           Programação Web I
+          </p>
+        </div>
+        <!-- Grid column -->
 
-      <v-card-text
-        class="white--text pt-0"
-      >Phasellus feugiat arcu sapien, et iaculis ipsum elementum sit amet. Mauris cursus commodo interdum. Praesent ut risus eget metus luctus accumsan id ultrices nunc. Sed at orci sed massa consectetur dignissim a sit amet dui. Duis commodo vitae velit et faucibus. Morbi vehicula lacinia malesuada. Nulla placerat augue vel ipsum ultrices, cursus iaculis dui sollicitudin. Vestibulum eu ipsum vel diam elementum tempor vel ut orci. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</v-card-text>
+        <hr class="clearfix w-100 d-md-none pb-3" />
 
-      <v-divider></v-divider>
+        <!-- Grid column -->
+        <div class="col-md-6 mb-md-0 mb-3">
+          <!-- Content -->
+          <h5 class="text-uppercase font-weight-bold">Footer text 2</h5>
+          <p>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Optio deserunt fuga perferendis modi earum
+            commodi aperiam temporibus quod nulla nesciunt aliquid debitis ullam omnis quos ipsam, aspernatur id
+            excepturi hic.
+          </p>
+        </div>
+        <!-- Grid column -->
+      </div>
+      <!-- Grid row -->
+    </div>
+    <!-- Footer Text -->
 
-      <v-card-text class="white--text">
-        {{ new Date().getFullYear() }} —
-        <strong>Vuetify</strong>
-      </v-card-text>
-    </v-card>
-  </v-footer>
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3">
+      2020 - smart_route
+    </div>
+    <!-- Copyright -->
+  </footer>
+  <!-- Footer -->
 </template>
-<script>
-export default {
-  data: () => ({
-    icons: [
-      "fab fa-facebook",
-      "fab fa-twitter",
-      "fab fa-google-plus",
-      "fab fa-linkedin",
-      "fab fa-instagram"
-    ]
-  })
-};
-</script>
