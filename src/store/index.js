@@ -12,7 +12,7 @@ export default new Vuex.Store({
         Name: "admin",
         Email: "admin@gmail.com",
         Password: "admin"
-      }
+      },
     ],
     listLocations: [],
     listRoutes: []

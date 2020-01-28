@@ -33,7 +33,7 @@
         <option value="art_gallery">Galerias de arte</option>
       </select>
       <br />
-      <input type="submit" value="Criar rota" @click="renderMap()" />
+      <input id="finalBtn" type="submit" value="Criar rota" @click="renderMap()" />
     </form>
     <div class="google-map" id="myMap"></div>
   </div>
@@ -50,6 +50,7 @@ export default {
       startPosition: "",
       locationContent: "",
       listLocations: [],
+      filteredlistLocations:[],
       travelMode: ""
     };
   },
@@ -60,8 +61,10 @@ export default {
         zoom: 15
       });
       map.setMapTypeId(google.maps.MapTypeId.SATELLITE);
+      let service;
       let infoWindow = new google.maps.InfoWindow();
       let geocoder = new google.maps.Geocoder();
+      const iconBase = "https://maps.google.com/mapfiles/kml/shapes/";
       //let directionsService = new google.maps.DirectionsService();
       //let directionsRenderer = new google.maps.DirectionsRenderer();
       //directionsRenderer.setMap(this.map);
@@ -98,47 +101,57 @@ export default {
           }
         );
       }
-
+      service = new google.maps.places.PlacesService(map);
+      service.nearbySearch(routeRequest, callback);
+      /*document.querySelector("#finalBtn").addEventListener("click", () => {
+       
+      });*/
       //---------------------------------------------//
       //guardar as localizações num array--------------
+
       function callback(results, status) {
         if (status == google.maps.places.PlacesServiceStatus.OK) {
-          let service = new google.maps.places.PlacesService(map);
           for (const result of results) {
+            createMarker(result);
+            alert(result);
             this.listLocations.push(result);
           }
         }
       }
-      service.nearbySearch(routeRequest, callback);
-      /*
+
       function createMarker(place) {
         const marker = new google.maps.Marker({
-          map:this.map,
-          position:place.geometry.location
+          map: map,
+          position: place.geometry.location,
+          icon: iconBase
         });
-        google.maps.event.addListener(marker,'click',function(){
+        google.maps.event.addListener(marker, "click", function() {
           infoWindow.setContent(place.name);
-          infoWindow.open(this.map,this);
-        })
+          infoWindow.open(map, this);
+        });
       }
       //--------------------------------------------------//
       //calcula a melhor rota
       /*function calcRoute(directionsService, directionsRenderer) {
-        const request = {
-          origin: this.map.center,
-          destination: this.map.center,
-          waypoints: this.listLocations,
+        const requestRoute = {
+          origin: map.center,
+          destination: map.center,
+          waypoints: this.filteredlistLocations,
           optimizeWaypoints: true,
           travelMode: google.maps.TravelMode[this.selectedMode]
         };
-        directionsService.route(request,
+        directionsService.route(requestRoute,
           (result,
           status => {
             if (status === "OK") {
               directionsRenderer.setDirections(result);
+              const directionsData = result.routes[0].legs[0];
             }
           })
         );
+      }*/
+      /*function filterLocation(){
+
       }*/
     }
   }

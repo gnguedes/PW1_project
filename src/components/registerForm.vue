@@ -50,11 +50,10 @@ export default {
     },
     //verifica se as passwords sao iguais
     checkPassword() {
-      if (this.txtPassword == this.txtCheckPassword) {
-        alert("passwords match");
+      if (this.txtPassword == this.txtCheckPassword && this.txtPassword!="") {
         this.userChecked = true;
       } else {
-        alert("Passwords têm de ser iguais");
+        alert("Erro na palavra-passe");
         this.userChecked = false;
       }
     },

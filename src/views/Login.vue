@@ -1,19 +1,24 @@
 <template>
   <div class="login">
-    <h1>Smart_route</h1>
-    <div>
-      <loginForm />
+    <navBarBeforeLogin />
+    <div class="container" style="margin-top:50px">
+      <h1>Smart_route</h1>
+      <div>
+        <loginForm />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import loginForm from "@/components/loginForm.vue";
+import navBarBeforeLogin from "@/components/NavBarBeforeLogin.vue";
 
 export default {
   name: "login",
   components: {
-    loginForm
+    loginForm,
+    navBarBeforeLogin
   }
 };
 </script>

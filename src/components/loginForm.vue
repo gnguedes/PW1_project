@@ -3,7 +3,7 @@
   <!-- Card -->
   <div class="card mx-xl-5">
     <!-- Card body -->
-    <div class="card-body">
+    <div class="card-body" >
       <form v-on:submit.prevent="logUser">
         <p class="h4 text-center mb-4"></p>
         <label for="txtUsername" class="grey-text">Your username</label>
@@ -69,5 +69,3 @@ export default {
   }
 };
 </script>
-
-<style></style>
