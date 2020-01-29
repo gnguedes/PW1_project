@@ -1,5 +1,6 @@
 <template>
   <div>
+    <br>
     <h1>Área pessoal de {{getUser($route.params.userId).Name}}</h1>
     <br />
     <p>Name: {{getUser($route.params.userId).Name}}</p>

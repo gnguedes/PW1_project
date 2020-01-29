@@ -67,7 +67,7 @@ export default {
       const iconBase = "https://maps.google.com/mapfiles/kml/shapes/";
       //let directionsService = new google.maps.DirectionsService();
       //let directionsRenderer = new google.maps.DirectionsRenderer();
-      //directionsRenderer.setMap(this.map);
+      //directionsRenderer.setMap(map);
 
       //pedido das localizações da rota
       let routeRequest = {
