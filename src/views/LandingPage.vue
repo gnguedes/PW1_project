@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import landing from "@/components/landingPage.vue";
+import landing from "@/components/LandingPage.vue";
 
 export default {
   name: "landingPage",
