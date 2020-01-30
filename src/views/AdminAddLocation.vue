@@ -1,29 +1,24 @@
 <template>
   <div>
     <navBar />
-    <div class="container" style="margin-top:50px">
-      <profilePage />
+    <div class="container" style="margin-top:100px">
+      <h1>Adicionar localização</h1>
+      <addLoc />
     </div>
-    <br>
-    <br>
-    <footerPP/>
+    <footerPP />
   </div>
 </template>
-
 <script>
-import profilePage from "@/components/ProfilePage.vue";
 import navBar from "@/components/NavBar.vue";
+import addLoc from "@/components/adminAddNewLocation.vue";
 import footerPP from "@/components/footer.vue";
 
-
 export default {
-  name: "profile",
+  name: "adminLocPage",
   components: {
     navBar,
-    profilePage,
+    addLoc,
     footerPP
   }
 };
 </script>
-
-<style></style>

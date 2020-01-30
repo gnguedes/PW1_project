@@ -1,29 +1,25 @@
 <template>
   <div>
     <navBar />
-    <div class="container" style="margin-top:50px">
-      <profilePage />
+    <div class="container" style="margin-top:100px">
+      <h1>Editar perfil</h1>
+      <changeUser />
     </div>
-    <br>
-    <br>
-    <footerPP/>
+    <footerPP />
   </div>
 </template>
-
 <script>
-import profilePage from "@/components/ProfilePage.vue";
 import navBar from "@/components/NavBar.vue";
+import changeUser from "@/components/changeUserProfile.vue";
 import footerPP from "@/components/footer.vue";
 
 
 export default {
-  name: "profile",
+  name: "changeUserPage",
   components: {
     navBar,
-    profilePage,
+    changeUser,
     footerPP
   }
 };
 </script>
-
-<style></style>

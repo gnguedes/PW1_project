@@ -1,30 +1,23 @@
 <template>
   <div>
-    <br>
+    <br />
     <h1>Área pessoal de {{getUser($route.params.userId).Name}}</h1>
     <br />
     <p>Name: {{getUser($route.params.userId).Name}}</p>
     <p>Email: {{getUser($route.params.userId).Email}}</p>
     <div>
-      <v-btn v-if="visible" to="/adminUsers">Gerir Utilizadores</v-btn><br>
-      <br>
+      <v-btn to="/changeUser">Editar Perfil</v-btn>
+      <br />
+      <v-btn v-if="visible" to="/adminUsers">Gerir Utilizadores</v-btn>
+      <br />
+      <br />
       <v-btn v-if="visible" to="/adminRoutes">Gerir Itinerários</v-btn>
-      <v-row>
-        <v-dialog v-model="dialog" persistent max-width="290">
-          <template v-slot:activator="{ on }">
-            <v-btn color="primary" dark v-on="on">Editar perfil</v-btn>
-          </template>
-          <v-card>
-            <v-card-title class="headline">Edição de perfil</v-card-title>
-            <v-card-text>colocar aqui o form de alteração de perfil</v-card-text>
-            <v-card-actions>
-              <v-spacer></v-spacer>
-              <v-btn color="green darken-1" text @click="dialog = false">Cancelar</v-btn>
-              <v-btn color="green darken-1" text @click="dialog = false">Guardar</v-btn>
-            </v-card-actions>
-          </v-card>
-        </v-dialog>
-      </v-row>
+      <br />
+      <br />
+      <v-btn v-if="visible" to="/adminLocations">Gerir Localizações</v-btn>
+      <br />
+      <br />
+      <v-btn v-if="visible" to="/adminAddLoc">Adicionar Localizações</v-btn>
     </div>
   </div>
 </template>

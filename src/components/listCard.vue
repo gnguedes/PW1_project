@@ -8,11 +8,10 @@
       </v-col>
       <br />
       <tr v-for="location in filteredLocation" v-bind:key="location">
-        <v-card class="mx-auto">
+        <v-card>
           <v-img
             class="white--text align-end"
-            height="200px"
-            src="{{location.imgLink}}"
+            :src="location.imgLink"
           ></v-img>
           <v-list-item three-line>
             <v-list-item-content>
@@ -20,15 +19,12 @@
               <v-list-item-title class="headline mb-1">Tipo de localização: {{location.Type}}</v-list-item-title>
               <v-list-item-subtitle>Descrição: {{location.Description}}</v-list-item-subtitle>
             </v-list-item-content>
-
-            <v-list-item-avatar tile size="80" color="grey"></v-list-item-avatar>
           </v-list-item>
 
           <v-card-actions>
             <v-btn text>Ver no mapa</v-btn>
           </v-card-actions>
         </v-card>
-        <br />
       </tr>
     </div>
   </div>

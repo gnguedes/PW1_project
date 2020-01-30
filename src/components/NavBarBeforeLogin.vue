@@ -6,10 +6,10 @@
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
       <b-collapse type="dark" id="nav-collapse" is-nav>
-        <b-navbar-nav>
+        <b-navbar-nav class="ml-auto">
          <router-link to="/">Página Inicial</router-link>
         </b-navbar-nav>
-        <b-navbar-nav>
+        <b-navbar-nav class="ml-auto">
           <router-link to="/login">Iniciar Sessão</router-link>
         </b-navbar-nav>
 

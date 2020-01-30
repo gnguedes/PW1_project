@@ -11,7 +11,7 @@
         </b-navbar-nav>
         <br>
         <b-navbar-nav class="ml-auto">
-         <router-link to="/listingRoutes">Consultar Itinerários </router-link>
+         <router-link to="/listingCard">Consultar Localizações </router-link>
         </b-navbar-nav>
 
         <!-- Right aligned nav items -->

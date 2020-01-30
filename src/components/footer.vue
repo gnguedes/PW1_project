@@ -21,9 +21,12 @@
         <!-- Grid column -->
         <div class="col-md-6 mb-md-0 mb-3">
           <!-- Content -->
-          <h5 class="text-uppercase font-weight-bold">Footer text 2</h5>
+          <h5 class="text-uppercase font-weight-bold">Contactos</h5>
           <p>
-            
+            9170454@esmad.ipp.pt
+          </p>
+          <p>
+            <router-link to="/toAbout">Sobre nós</router-link>
           </p>
         </div>
         <!-- Grid column -->

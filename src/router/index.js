@@ -8,7 +8,12 @@ import LandingPage from "../views/LandingPage.vue";
 import GettingLost from "../views/notFoundPage.vue";
 import adminUser from "../views/AdminListUser.vue";
 import adminRoute from "../views/AdminListRoute.vue";
-import listingRoute from "../views/ListRoutes.vue";
+import listingCard from "../views/ListCard.vue";
+import adminLocation from "../views/AdminListLocations.vue";
+import adminAddLoc from "../views/AdminAddLocation.vue";
+import changeUserPage from "../views/ChangeProfile.vue";
+import aboutPage from "../views/AboutPage.vue";
+
 
 Vue.use(VueRouter);
 
@@ -39,23 +44,44 @@ const routes = [
     component: LandingPage
   },
   {
-    path:"*",
-    name:"gettingLost",
+    path: "*",
+    name: "gettingLost",
     component: GettingLost
   },
   {
-    path:"/adminUsers",
-    name:"adminManageUsers",
+    path: "/adminUsers",
+    name: "adminManageUsers",
     component: adminUser
   },
   {
-    path:"/adminRoutes",
-    name:"adminManageRoutes",
+    path: "/adminRoutes",
+    name: "adminManageRoutes",
     component: adminRoute
-  },{
-    path:"/listingRoutes",
-    name:"listingRoutes",
-    component: listingRoute
+  },
+  {
+    path: "/listingCard",
+    name: "listingCard",
+    component: listingCard
+  },
+  {
+    path: "/adminLocations",
+    name: "adminLocations",
+    component: adminLocation,
+  },
+  {
+    path: "/adminAddLoc",
+    name: "adminAddLoc",
+    component: adminAddLoc,
+  },
+  {
+    path: "/changeUser",
+    name: "changeUser",
+    component: changeUserPage,
+  },
+  {
+    path:"/toAbout",
+    name:"toAbout",
+    component: aboutPage,
   }
 
 

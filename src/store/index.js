@@ -21,7 +21,7 @@ export default new Vuex.Store({
         Coordenates: { lat: 41.145806, lng: -8.614084 },
         Description: "Igreja barroca com um altar em mármore e um campanário de 75 metros de altura, um símbolo do Porto.",
         Type: "tourist_attraction",
-        imgLink: "https://www.google.com/maps/place/Igreja+dos+Cl%C3%A9rigos/@41.1458213,-8.6139845,3a,75y,90t/data=!3m8!1e2!3m6!1sAF1QipNhWFC5tRFonvAE53kN69iXkVuUdZGTu-4WqMWa!2e10!3e12!6shttps:%2F%2Flh5.googleusercontent.com%2Fp%2FAF1QipNhWFC5tRFonvAE53kN69iXkVuUdZGTu-4WqMWa%3Dw86-h114-k-no!7i3024!8i4032!4m13!1m7!3m6!1s0xd2465abc4e153c1:0xa648d95640b114bc!2sPorto!3b1!8m2!3d41.1579438!4d-8.6291053!3m4!1s0xd2464e251ced649:0x70c16361c3de59f0!8m2!3d41.1458212!4d-8.6139847#"
+        imgLink: "https://lh5.googleusercontent.com/p/AF1QipNhWFC5tRFonvAE53kN69iXkVuUdZGTu-4WqMWa=w408-h544-k-no"
       },
       {
         id: 1,
@@ -134,6 +134,9 @@ export default new Vuex.Store({
     },
     ADD_ROUTE(state, payload) {
       state.listRoutes.push(payload);
-    }
+    },
+    ADD_LOCATION(state,payload){
+      state.listLocations.push(payload)
+    },
   }
 });
