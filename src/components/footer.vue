@@ -8,7 +8,7 @@
         <!-- Grid column -->
         <div class="col-md-6 mt-md-0 mt-3">
           <!-- Content -->
-          <h5 class="text-uppercase font-weight-bold">Footer text 1</h5>
+          <h5 class="text-uppercase font-weight-bold">smart_route</h5>
           <p>
            Este projeto foi desenvolvido no âmbito da disciplina de 
            Programação Web I

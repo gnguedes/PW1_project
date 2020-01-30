@@ -1,21 +1,24 @@
 <template>
   <div>
-    <span v-if="this.listRoutes.length===0">SEM ROTAS REGISTADAS</span>
+    <span v-if="this.listLocations.length===0">SEM LOCALIZAÇÔES ADICIONADAS</span>
     <div v-else>
       <br />
       <v-col cols="12" sm="6" md="3">
-        <v-text-field label="Pesquisar Id" v-model="filterRouteId"></v-text-field>
-        <v-text-field label="Pesquisar Locatização" v-model="filterRouteLocation"></v-text-field>
-        <v-text-field label="Pesquisar Nome" v-model="filterRouteName"></v-text-field>
+        <v-text-field label="Pesquisar nome" v-model="filterLocationName"></v-text-field>
       </v-col>
       <br />
-      <tr v-for="route in filteredRoute" v-bind:key="route">
-        <v-card class="mx-auto" max-width="344" outlined>
+      <tr v-for="location in filteredLocation" v-bind:key="location">
+        <v-card class="mx-auto">
+          <v-img
+            class="white--text align-end"
+            height="200px"
+            src="{{location.imgLink}}"
+          ></v-img>
           <v-list-item three-line>
             <v-list-item-content>
-              <div class="overline mb-4">{{route.id}}</div>
-              <v-list-item-title class="headline mb-1">Inicio em {{route.startPosition}}</v-list-item-title>
-              <v-list-item-subtitle>Locais visitados: {{route.locations}}</v-list-item-subtitle>
+              <div class="overline mb-4">{{location.Name}}</div>
+              <v-list-item-title class="headline mb-1">Tipo de localização: {{location.Type}}</v-list-item-title>
+              <v-list-item-subtitle>Descrição: {{location.Description}}</v-list-item-subtitle>
             </v-list-item-content>
 
             <v-list-item-avatar tile size="80" color="grey"></v-list-item-avatar>
@@ -25,6 +28,7 @@
             <v-btn text>Ver no mapa</v-btn>
           </v-card-actions>
         </v-card>
+        <br />
       </tr>
     </div>
   </div>
@@ -34,14 +38,24 @@ export default {
   name: "routeList",
   data: function() {
     return {
-      filterRouteId: "",
-      filterRouteLocation: "",
-      filterRouteName: "",
-      listRoutes: []
+      filterLocationName: "",
+      listRoutes: [],
+      listLocations: []
     };
   },
   created() {
-    this.listRoutes = this.$store.getters.getAllRoutes;
+    this.listLocations = this.$store.getters.getAllLocations;
+  },
+  computed: {
+    filteredLocation() {
+      return this.listLocations.filter(location => {
+        let filteredLocationNameResult = true;
+        if (this.filterLocationName !== "") {
+          filteredLocationNameResult = location.Name == this.filterLocationName;
+        }
+        return filteredLocationNameResult;
+      });
+    }
   }
 };
 </script>

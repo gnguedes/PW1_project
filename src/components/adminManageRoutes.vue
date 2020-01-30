@@ -5,23 +5,24 @@
       <br />
       <v-col cols="12" sm="6" md="3">
         <v-text-field label="Pesquisar Id" v-model="filterRouteId"></v-text-field>
-        <v-text-field label="Pesquisar Locatização" v-model="filterRouteLocation"></v-text-field>
-        <v-text-field label="Pesquisar Nome" v-model="filterRouteName"></v-text-field>
+        <v-text-field label="Pesquisar Tipo" v-model="filterRouteType"></v-text-field>
+        <v-text-field label="Pesquisar Posição Inicial" v-model="filterRouteLocations"></v-text-field>
       </v-col>
       <br />
       <table class="table">
         <thead>
           <tr>
             <th scope="col">Id</th>
-            <th scope="col">Nome</th>
+            <th scope="col">Posição Inicial</th>
             <th scope="col">Localizações</th>
+            <th scope="col">Operações</th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="route in filteredRoute" v-bind:key="route">
             <td>{{route.id}}</td>
-            <td>{{route.StartLocation}}</td>
             <td>{{route.Locations}}</td>
+            <td>{{route.Type}}</td>
             <td>
               <v-btn v-on:click="removeRoute(route.id)">REMOVER</v-btn>
             </td>
@@ -37,8 +38,8 @@ export default {
   data: function() {
     return {
       filterRouteId: "",
-      filterRouteLocation: "",
-      filterRouteName: "",
+      filterRouteType: "",
+      filterRouteLocations: "",
       listRoutes: []
     };
   },
@@ -56,28 +57,28 @@ export default {
     }
   },
   computed: {
-    fitleredRoutes() {
+    filteredRoute() {
       return this.listRoutes.filter(route => {
         let filteredRouteIdResult = true;
-        let filteredRouteLocationResult = true;
-        let filteredRouteNameResult = true;
+        let filteredRouteTypeResult = true;
+        let filteredRouteLocationsResult = true;
         //filtro de rota atraves do id
         if (this.filterRouteId !== "") {
           filteredRouteIdResult = route.id == this.filterRouteId;
         }
         //filtro da rota atraves de localizações
-        if (this.filterRouteLocation !== "") {
-          filteredRouteLocationResult =
-            route.location == this.filterRouteLocation;
+        if (this.filterRouteType !== "") {
+          filteredRouteTypeResult =
+            route.Type == this.filterRouteType;
         }
-        //filtro da rota atraves do nome
-        if (this.filteredRouteNameResult !== "") {
-          filteredRouteNameResult = route.name == this.filterRouteName;
+        //filtro da rota atraves da posicao inicial
+        if (this.filterRouteLocations!== "") {
+          filteredRouteLocationsResult = route.Locations == this.filterRouteLocations;
         }
         return (
           filteredRouteIdResult &&
-          filteredRouteLocationResult &&
-          filteredRouteNameResult
+          filteredRouteTypeResult &&
+          filteredRouteLocationsResult
         );
       });
     }

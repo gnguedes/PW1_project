@@ -7,10 +7,10 @@
 
       <b-collapse type="dark" id="nav-collapse" is-nav>
         <b-navbar-nav>
-          <b-nav-item to="/">Página Inicial</b-nav-item>
+         <router-link to="/">Página Inicial</router-link>
         </b-navbar-nav>
         <b-navbar-nav>
-          <b-nav-item to="/login">Iniciar Sessão</b-nav-item>
+          <router-link to="/login">Iniciar Sessão</router-link>
         </b-navbar-nav>
 
         <!-- Right aligned nav items -->
