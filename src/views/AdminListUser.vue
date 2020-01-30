@@ -1,7 +1,7 @@
 <template>
   <div>
     <navBar />
-    <div class="container" style="margin-top:50px">
+    <div class="container" style="margin-top:100px">
       <h1>Área de administrador</h1>
       <manageUsers />
     </div>
@@ -12,11 +12,10 @@ import navBar from "@/components/NavBar.vue";
 import manageUsers from "@/components/adminManageUsers.vue";
 
 export default {
-  name: "adminPage",
+  name: "adminPageUser",
   components: {
     navBar,
     manageUsers
   }
 };
 </script>
-

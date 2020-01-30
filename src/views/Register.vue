@@ -1,7 +1,7 @@
 <template>
   <div class="signUp">
     <navBarBeforeLogin />
-    <div class="container" style="margin-top:50px">
+    <div class="container" style="margin-top:100px">
       <h3>Registo</h3>
       <registerForm />
     </div>

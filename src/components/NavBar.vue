@@ -1,19 +1,21 @@
 <template>
   <div>
     <b-navbar toggleable="lg" type="dark" variant="dark" fixed="top">
-      <b-navbar-brand href="#">Smart_route</b-navbar-brand>
+      <b-navbar-brand>Smart_route</b-navbar-brand>
 
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
       <b-collapse type="dark" id="nav-collapse" is-nav>
-        <b-navbar-nav>
-          <b-nav-item to="/Home">Home</b-nav-item>
-          <b-nav-item >Disabled</b-nav-item>
+        <b-navbar-nav class="ml-auto">
+         <router-link to="/creatingRoute">Criar Itinerário</router-link>
+        </b-navbar-nav>
+        <br>
+        <b-navbar-nav class="ml-auto">
+         <router-link to="/listingRoutes">Consultar Itinerários </router-link>
         </b-navbar-nav>
 
         <!-- Right aligned nav items -->
         <b-navbar-nav class="ml-auto">
-
           <b-nav-item-dropdown right>
             <!-- Using 'button-content' slot -->
             <template v-slot:button-content>
@@ -61,4 +63,3 @@ export default {
   }
 };
 </script>
-

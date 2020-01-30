@@ -1,12 +1,14 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
+import CreatingRoute from "../views/Home.vue";
 import Login from "../views/Login.vue";
 import Register from "../views/Register.vue";
 import UserProfile from "../views/UserProfile.vue";
-import AdminPage from "../views/AdminPage.vue";
 import LandingPage from "../views/LandingPage.vue";
 import GettingLost from "../views/notFoundPage.vue";
+import adminUser from "../views/AdminListUser.vue";
+import adminRoute from "../views/AdminListRoute.vue";
+import listingRoute from "../views/ListRoutes.vue";
 
 Vue.use(VueRouter);
 
@@ -22,9 +24,9 @@ const routes = [
     component: Register
   },
   {
-    path: "/home",
-    name: "home",
-    component: Home
+    path: "/creatingRoute",
+    name: "creatingRoute",
+    component: CreatingRoute
   },
   {
     path: "/user/:userId",
@@ -36,17 +38,26 @@ const routes = [
     name: "landingPage",
     component: LandingPage
   },
-
-  {
-    path: "/adminPage",
-    name: "adminPage",
-    component: AdminPage
-  },
   {
     path:"*",
     name:"gettingLost",
     component: GettingLost
   },
+  {
+    path:"/adminUsers",
+    name:"adminManageUsers",
+    component: adminUser
+  },
+  {
+    path:"/adminRoutes",
+    name:"adminManageRoutes",
+    component: adminRoute
+  },{
+    path:"/listingRoutes",
+    name:"listingRoutes",
+    component: listingRoute
+  }
+
 
 ];
 

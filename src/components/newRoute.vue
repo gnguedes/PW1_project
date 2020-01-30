@@ -8,9 +8,11 @@
         <option value="hotelCristalPorto">Hotel Cristal Porto</option>
         <option value="hotelEurostartsHeroismo">Hotel Eurostars Heroismo</option>
       </select>
+      <br />
+      <label for="travelMode">Modo de transporte:</label>
       <select type="radio" id="travelMode" v-model="travelMode">
         <br />
-        <option value="DRIVING">Caroo</option>
+        <option value="DRIVING">Carro</option>
         <option value="WALKING">Caminhar</option>
         <option value="BICYCLING">Bicicleta</option>
       </select>
@@ -18,11 +20,8 @@
       <label for="numPeople">Quantas pessoas:</label>
       <input type="number" id="numPeople" v-model="numPeople" min="1" />
       <br />
-      <label for="dateArrival">Dia de chegada:</label>
-      <input type="date" id="dateArrival" v-model="dateArrival" />
-      <br />
-      <label for="dateDepartude">Dia de partida:</label>
-      <input type="date" id="dateDeparture" v-model="dateDepartude" />
+      <label for="numDays">Quantas dias:</label>
+      <input type="number" id="numDays" v-model="numDays" min="1" />
       <br />
       <label for="typeRoute">Tipo de rota:</label>
       <select type="radio" id="typeRoute" v-model="typeRoute">
@@ -44,17 +43,44 @@ export default {
   data: function() {
     return {
       numPeople: 0,
-      dateArrival: "",
-      dateDepartude: "",
+      numDays: 0,
       typeRoute: "",
       startPosition: "",
       locationContent: "",
       listLocations: [],
-      filteredlistLocations:[],
-      travelMode: ""
+      filteredlistLocations: [],
+      travelMode: "",
+      routeChecked: false,
+      listRoutes: []
     };
   },
+  created() {
+    this.listRoutes = this.$store.getters.getAllRoutes;
+  },
   methods: {
+    //adicionar a rota a loja
+    addRoute() {
+      if (this.routeChecked == true) {
+        this.$store.commit("ADD_ROUTE", {
+          id: this.getLastRouteId() + 1,
+          StartPosition: this.startPosition,
+          Locations: this.filteredlistLocations
+        });
+      } else {
+        alert("Erro em guardar a rota");
+      }
+    },
+
+    //verificar o id da ultima rota adicionada a loja
+    getLastRouteId() {
+      if (this.listRoutes.length) {
+        return this.listRoutes[this.listRoutes.length - 1].id;
+      } else {
+        return 0;
+      }
+    },
+
+    //criar o mapa com a rota traçada
     renderMap() {
       let map = new google.maps.Map(document.querySelector("#myMap"), {
         center: { lat: 41.148481, lng: -8.606893 },

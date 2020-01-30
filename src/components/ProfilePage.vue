@@ -6,7 +6,9 @@
     <p>Name: {{getUser($route.params.userId).Name}}</p>
     <p>Email: {{getUser($route.params.userId).Email}}</p>
     <div>
-      <v-btn v-if="visible" to="/adminPage">goto Admin</v-btn>
+      <v-btn v-if="visible" to="/adminUsers">Gerir Utilizadores</v-btn><br>
+      <br>
+      <v-btn v-if="visible" to="/adminRoutes">Gerir Itinerários</v-btn>
       <v-row>
         <v-dialog v-model="dialog" persistent max-width="290">
           <template v-slot:activator="{ on }">
@@ -47,6 +49,7 @@ export default {
     getUser(id) {
       return this.listUsers.filter(user => user.id === id)[0];
     },
+    //verifica se o user e o admin ou nao
     checkUserType() {
       if (this.loggedUserId == 0) {
         this.visible = true;

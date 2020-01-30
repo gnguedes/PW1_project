@@ -20,7 +20,7 @@
         <tbody>
           <tr v-for="route in filteredRoute" v-bind:key="route">
             <td>{{route.id}}</td>
-            <td>{{route.Name}}</td>
+            <td>{{route.StartLocation}}</td>
             <td>{{route.Locations}}</td>
             <td>
               <v-btn v-on:click="removeRoute(route.id)">REMOVER</v-btn>
@@ -45,19 +45,19 @@ export default {
   created() {
     this.listRoutes = this.$store.getters.getAllRoutes;
   },
-  methods:{
-      removeRoute(removedId){
-          if(confirm("Deseja mesmo remover esta rota?")){
-              this.listRoutes = this.listRoutes.filter(
-                  id=> route.id != removedId,
-                  this.$store.state.listRoutes = this.listRoutes
-              )
-          }
+  methods: {
+    removeRoute(removedId) {
+      if (confirm("Deseja mesmo remover esta rota?")) {
+        this.listRoutes = this.listRoutes.filter(
+          route => route.id != removedId,
+          (this.$store.state.listRoutes = this.listRoutes)
+        );
       }
+    }
   },
   computed: {
     fitleredRoutes() {
-      return this.listRoutes.filter(routes => {
+      return this.listRoutes.filter(route => {
         let filteredRouteIdResult = true;
         let filteredRouteLocationResult = true;
         let filteredRouteNameResult = true;
@@ -66,14 +66,19 @@ export default {
           filteredRouteIdResult = route.id == this.filterRouteId;
         }
         //filtro da rota atraves de localizações
-        if(this.filterRouteLocation !==""){
-            filteredRouteLocationResult = route.location == this.filterRouteLocation;
+        if (this.filterRouteLocation !== "") {
+          filteredRouteLocationResult =
+            route.location == this.filterRouteLocation;
         }
         //filtro da rota atraves do nome
-        if(this.filteredRouteNameResult !==""){
-            filteredRouteNameResult = route.name == this.filterRouteName;
+        if (this.filteredRouteNameResult !== "") {
+          filteredRouteNameResult = route.name == this.filterRouteName;
         }
-        return filteredRouteIdResult && filteredRouteLocationResult && filteredRouteNameResult;
+        return (
+          filteredRouteIdResult &&
+          filteredRouteLocationResult &&
+          filteredRouteNameResult
+        );
       });
     }
   }
