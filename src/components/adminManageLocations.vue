@@ -47,7 +47,7 @@ export default {
       if (confirm("Deseja mesmo remover esta localização?")) {
         this.listLocations = this.listLocations.filter(
           location => location.Name !== name,
-          (this.$store.state.listLocation = this.listLocations)
+          (this.$store.state.listLocations = this.listLocations)
         );
       }
     }
@@ -57,7 +57,7 @@ export default {
       return this.listLocations.filter(location => {
         let filteredLocationNameResult = true;
         if (this.filterLocation !== "") {
-          filteredLocationNameResult = location.Name == this.filterLocation;
+          filteredLocationNameResult = location.Name.includes(this.filterLocation);
         }
         return filteredLocationNameResult;
       });

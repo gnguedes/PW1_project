@@ -23,7 +23,7 @@
                 <v-btn :to="{name: 'users', params: {userId: user.id}}">{{user.Name}}</v-btn>
               </em>
             </template>
-            <b-dropdown-item v-on:click="logoutUser()">Sign Out</b-dropdown-item>
+            <b-dropdown-item v-on:click="logoutUser()">Terminar sessão</b-dropdown-item>
           </b-nav-item-dropdown>
         </b-navbar-nav>
       </b-collapse>

@@ -64,16 +64,16 @@ export default {
         let filteredRouteLocationsResult = true;
         //filtro de rota atraves do id
         if (this.filterRouteId !== "") {
-          filteredRouteIdResult = route.id == this.filterRouteId;
+          filteredRouteIdResult = route.id.includes( this.filterRouteId);
         }
         //filtro da rota atraves de localizações
         if (this.filterRouteType !== "") {
           filteredRouteTypeResult =
-            route.Type == this.filterRouteType;
+            route.Type.includes( this.filterRouteType);
         }
         //filtro da rota atraves da posicao inicial
         if (this.filterRouteLocations!== "") {
-          filteredRouteLocationsResult = route.Locations == this.filterRouteLocations;
+          filteredRouteLocationsResult = route.Locations.includes(this.filterRouteLocations);
         }
         return (
           filteredRouteIdResult &&

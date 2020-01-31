@@ -60,7 +60,7 @@ export default {
         return this.listOfUsers.filter(user => {
         let filteredUserResult = true;
         if (this.filterName !== "") {
-          filteredUserResult = user.Name == this.filterName;
+          filteredUserResult = user.Name.includes(this.filterName);
         }
         return filteredUserResult;
       });

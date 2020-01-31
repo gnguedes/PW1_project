@@ -47,7 +47,7 @@ export default {
       return this.listLocations.filter(location => {
         let filteredLocationNameResult = true;
         if (this.filterLocationName !== "") {
-          filteredLocationNameResult = location.Name == this.filterLocationName;
+          filteredLocationNameResult = location.Name.includes(this.filterLocationName);
         }
         return filteredLocationNameResult;
       });

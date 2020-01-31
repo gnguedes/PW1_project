@@ -1,23 +1,38 @@
 <template>
   <div id="frmRegister">
     <form v-on:submit.prevent="pushUser">
-      <label for="txtUsername">Nome de Utilizador:</label>
-      <input id="txtUsername" type="text" v-model="txtName" />
-      <br />
-
-      <label for="txtEmail">Email:</label>
-      <input type="email" id="txtEmail" v-model="txtEmail" />
-      <br />
-
-      <label for="txtPassword">Palavra-passe:</label>
-      <input type="password" id="txtPassword" v-model="txtPassword" />
-      <br />
-      <label for="txtCheckPassword">Confirmar palavra-passe:</label>
-      <input type="password" id="txtCheckPassword" v-model="txtCheckPassword" />
-
-      <br />
-
-      <input type="submit" value="Registar" />
+      <div class="form-row">
+        <div class="col-md-6">
+          <label>Nome de Utilizador</label>
+          <input type="text" class="form-control" v-model="txtName" placeholder="Nome" />
+        </div>
+        <div class="col-md-6">
+          <label>Email:</label>
+          <input type="text" class="form-control" v-model="txtEmail" placeholder="Email" />
+        </div>
+        <div class="col-md-6">
+          <label>Palavra-passe</label>
+          <input
+            type="password"
+            class="form-control"
+            v-model="txtPassword"
+            placeholder="Palavra-passe"
+          />
+        </div>
+        <div class="col-md-6">
+          <label>Confirmar Palavra-passe</label>
+          <input
+            type="password"
+            class="form-control"
+            v-model="txtCheckPassword"
+            placeholder="Confirmar palavra-passe"
+          />
+        </div>
+        <br />
+      </div>
+      <div class="col-auto">
+        <button type="submit" class="btn btn-primary">Registar</button>
+      </div>
     </form>
   </div>
 </template>
@@ -50,7 +65,7 @@ export default {
     },
     //verifica se as passwords sao iguais
     checkPassword() {
-      if (this.txtPassword == this.txtCheckPassword && this.txtPassword!="") {
+      if (this.txtPassword == this.txtCheckPassword && this.txtPassword != "") {
         this.userChecked = true;
       } else {
         alert("Erro na palavra-passe");

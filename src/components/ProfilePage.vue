@@ -7,6 +7,7 @@
     <p>Email: {{getUser($route.params.userId).Email}}</p>
     <div>
       <v-btn to="/changeUser">Editar Perfil</v-btn>
+      <br>
       <br />
       <v-btn v-if="visible" to="/adminUsers">Gerir Utilizadores</v-btn>
       <br />

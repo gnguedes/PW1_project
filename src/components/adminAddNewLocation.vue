@@ -7,19 +7,15 @@
           <div class="form-row">
             <div class="col-md-6">
               <label>Nome:</label>
-              <input
-                type="text"
-                class="form-control"
-                v-model="txtLocationName"
-              />
+              <input type="text" class="form-control" v-model="txtLocationName" placeholder="Nome"/>
             </div>
             <div class="col-md-6">
-              <label>Description</label>
+              <label>Descrição</label>
               <input
                 type="text"
                 class="form-control"
                 v-model="txtLocDescription"
-                placeholder="Description"
+                placeholder="Descrição"
               />
             </div>
           </div>
@@ -74,18 +70,18 @@ export default {
     checkLocationName() {
       if (this.listLocation.length) {
         for (const location of this.listLocation) {
-          if (location.Name == this.txtLocName) {
-            (this.locationChecked = false),
-              alert("nome de localização indisponivel");
+          if (location.Name == this.txtLocationName) {
+            this.locationChecked = false
+            alert("nome de localização indisponivel");
           } else {
-            this.userChecked = true;
+            this.locationChecked = true;
           }
         }
       }
     },
     getCoordenates() {
       let geocoder = new google.maps.Geocoder();
-      geocoder.geocode({ address: this.txtLocName }, (results2, status) => {
+      geocoder.geocode({ address: this.txtLocationName }, (results2, status) => {
         if (status == "OK") {
           return results2[0].geometry.location;
         }
@@ -94,9 +90,9 @@ export default {
 
     pushLocation() {
       this.checkLocationName();
-      this.getCoordenates();
+      alert(this.locationChecked)
       if (this.locationChecked == true) {
-        this.$store.commit("ADD_USER", {
+        this.$store.commit("ADD_LOCATION", {
           id: this.getLastLocationId() + 1,
           Name: this.txtLocationName,
           Coordenates: this.getCoordenates(),
@@ -111,3 +107,4 @@ export default {
     }
   }
 };
+</script>
