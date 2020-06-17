@@ -6,6 +6,12 @@ import BootstrapVue from "bootstrap-vue";
 
 import "bootstrap/dist/css/bootstrap.css";
 import vuetify from './plugins/vuetify';
+import axios from 'axios';
+
+const http = axios.create({
+  baseURL: "http://localhost:3000"
+})
+Vue.prototype.$http = http;
 
 Vue.use(BootstrapVue);
 Vue.use(vuetify);
