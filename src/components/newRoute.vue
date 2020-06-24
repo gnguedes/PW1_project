@@ -3,23 +3,28 @@
     <!-- Card body -->
     <div class="card-body">
       <div>
-        <form>
+        <form @submit.prevent="initMap()">
           <div class="form-group">
             <label for="Start">Seleccione o ponto de partida</label>
             <select class="form-control" id="Start" v-model="startPosition">
-              <option value="currentPosition">Posição corrente</option>
-              <option value="Hotel Aliados">Hotel Aliados</option>
-              <option value="Hotel Cristal Porto">Hotel Cristal Porto</option>
-              <option value="Hotel Eurostarts Heroismo">Hotel Eurostars Heroismo</option>
+              <option value selected>Selecione o Ponto de Partida</option>
+              <option
+                v-for="startingPoint in startingPoints"
+                :value="startingPoint.id_ponto_partida"
+                :key="startingPoint.id_ponto_partida"
+              >{{ startingPoint.ponto_partida }}</option>
             </select>
           </div>
 
           <div class="form-group">
             <label for="travel">Modo de transporte</label>
             <select class="form-control" id="travel" v-model="travelMode">
-              <option value="DRIVING">Carro</option>
-              <option value="WALKING">Caminhar</option>
-              <option value="BICYCLING">Bicicleta</option>
+              <option value selected>Selecione o Modo de Transporte</option>
+              <option
+                v-for="transportType in transportTypes"
+                :value="transportType.id_modo_transporte"
+                :key="transportType.id_modo_transporte"
+              >{{ transportType.modo_transporte }}</option>
             </select>
           </div>
           <div class="form-row">
@@ -47,18 +52,20 @@
           <div class="form-group">
             <label for="type">Tipo de Rota</label>
             <select class="form-control" id="type" v-model="typeRoute">
-              <option value="museum">Museus</option>
-              <option value="restaurant">Restaurantes</option>
-              <option value="tourist_attraction">Monumentos e atrações turísticas</option>
-              <option value="art_gallery">Galerias de arte</option>
+              <option value selected>Selecione o Tipo de Rota</option>
+              <option
+                v-for="routeType in routeTypes"
+                :value="routeType.id_tipo_rota"
+                :key="routeType.id_tipo_rota"
+              >{{ routeType.tipo_rota }}</option>
             </select>
           </div>
           <div class="form-group row">
             <div class="col-auto">
-              <button type="submit" class="btn btn-primary" @click="initMap()">Criar rota</button>
+              <button type="submit" class="btn btn-primary">Criar rota</button>
             </div>
             <div class="col-auto">
-              <button type="submit" class="btn btn-secondary" @click="reset()">Reiniciar mapa</button>
+              <button type="reset" class="btn btn-secondary" @click="reset()">Reiniciar mapa</button>
             </div>
           </div>
         </form>
@@ -82,35 +89,67 @@ export default {
       filteredlistLocationsExtra: [],
       travelMode: "",
       routeChecked: false,
-      listRoutes: []
+      listRoutes: [],
+      routeTypes: [],
+      transportTypes: [],
+      startingPoints: []
     };
   },
   created() {
     this.listRoutes = this.$store.getters.getAllRoutes;
     this.listLocations = this.$store.getters.getAllLocations;
+    this.loadRouteTypes();
+    this.loadTransportTypes();
+    this.loadStartingPoints();
   },
   methods: {
     reset() {
       this.filteredlistLocations = [];
       this.startPosition = "";
       this.travelMode = "";
+      this.typeRoute = "";
       this.numPeople = 0;
       this.numDays = 0;
     },
     //adicionar a rota a loja
-    addRoute() {
-      if (this.routeChecked == true) {
-        this.$store.commit("ADD_ROUTE", {
-          id: this.getLastRouteId() + 1,
-          StartPosition: this.startPosition,
-          Locations: this.filteredlistLocationsExtra,
-          Type: this.typeRoute
+    async addRoute() {
+     try {
+        await this.$http.post("/routes", {
+          idPontoPartida: this.startPosition,
+          idTipoTransporte: this.travelMode,
+          idTipoRota: this.typeRoute,
+          numDias: this.numDays,
+          numPessoas: this.numPeople
         });
-      } else {
+        this.reset();
+      } catch(error) {
         alert("Erro em guardar a rota");
       }
     },
-
+    async loadRouteTypes() {
+      try {
+        const request = await this.$http.get("/routeType/");
+        this.routeTypes = request.data.content;
+      } catch (error) {
+        alert(error);
+      }
+    },
+    async loadTransportTypes() {
+      try {
+        const request = await this.$http.get("/transportType/");
+        this.transportTypes = request.data.content;
+      } catch (error) {
+        alert(error);
+      }
+    },
+    async loadStartingPoints() {
+      try {
+        const request = await this.$http.get("/startingPoints/");
+        this.startingPoints = request.data.content;
+      } catch (error) {
+        alert(error);
+      }
+    },
     //verificar o id da ultima rota adicionada a loja
     getLastRouteId() {
       if (this.listRoutes.length) {
@@ -140,6 +179,7 @@ export default {
     /*--------------------------------------------------*/
     //criar o mapa com a rota traçada
     initMap() {
+      this.addRoute();
       let map = new google.maps.Map(document.querySelector("#myMap"), {
         center: { lat: 41.148481, lng: -8.606893 },
         zoom: 15
@@ -171,7 +211,7 @@ export default {
               this.travelMode
             );
             this.routeChecked = true;
-            this.addRoute();
+           
           });
         }
       } else {
