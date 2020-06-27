@@ -7,12 +7,12 @@ export default new Vuex.Store({
   state: {
     loggedUserId: "",
     listUsers: [
-      {
+     /* {
         id: 0,
         Name: "admin",
         Email: "admin@gmail.com",
         Password: "admin"
-      },
+      },*/
     ],
     listLocations: [
       {
