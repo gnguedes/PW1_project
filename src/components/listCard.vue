@@ -10,12 +10,12 @@
       <v-row>
         <v-col v-for="location in filteredLocation" v-bind:key="location" cols="12" sm="6" md="3">
           <v-card >
-            <v-img class="white--text align-end" :src="location.imgLink"></v-img>
+            <v-img class="white--text align-end" :src="location.imagem"></v-img>
             <v-list-item three-line>
               <v-list-item-content>
-                <div class="overline mb-4">{{location.Name}}</div>
-                <v-list-item-title class="headline mb-1">Tipo de localização: {{location.Type}}</v-list-item-title>
-                <v-list-item-subtitle>Descrição: {{location.Description}}</v-list-item-subtitle>
+                <div class="overline mb-4">{{location.nome}}</div>
+                <v-list-item-title class="headline mb-1">Tipo de localização: {{location.tipo_localizacao}}</v-list-item-title>
+                <v-list-item-subtitle>Descrição: {{location.descricao}}</v-list-item-subtitle>
               </v-list-item-content>
             </v-list-item>
 
@@ -34,24 +34,29 @@ export default {
   data: function() {
     return {
       filterLocationName: "",
-      listRoutes: [],
       listLocations: []
     };
   },
   created() {
-    this.listLocations = this.$store.getters.getAllLocations;
+    this.loadLocations();
+
   },
   methods:{
     async loadLocations(){
-      
-    }
+      try {
+        const request = await this.$http.get("/location/");
+        this.listLocations = request.data.content;
+      } catch (error) {
+        alert(error);
+      }
+    },
   },
   computed: {
     filteredLocation() {
       return this.listLocations.filter(location => {
         let filteredLocationNameResult = true;
         if (this.filterLocationName !== "") {
-          filteredLocationNameResult = location.Name.includes(
+          filteredLocationNameResult = location.nome.includes(
             this.filterLocationName
           );
         }

@@ -21,11 +21,11 @@
         </thead>
         <tbody>
           <tr v-for="user in filteredUser" v-bind:key="user">
-            <td>{{user.id}}</td>
-            <td>{{user.Name}}</td>
-            <td>{{user.Email}}</td>
+            <td>{{user.id_user}}</td>
+            <td>{{user.name}}</td>
+            <td>{{user.email}}</td>
             <td>
-              <v-btn v-on:click="removeUser(user.Name)">REMOVER</v-btn>
+              <v-btn v-on:click="removeUser(user.id_user)">REMOVER</v-btn>
             </td>
           </tr>
         </tbody>
@@ -43,15 +43,26 @@ export default {
     };
   },
   created() {
-    this.listOfUsers = this.$store.getters.getAllUsers;
+    this.loadUsers();
   },
   methods:{
-    removeUser(name){
+    async removeUser(removeId){
       if (confirm("Deseja mesmo remover o utilizador?")) {
-        this.listOfUsers = this.listOfUsers.filter(
-         user => user.Name !== name,
-         this.$store.state.listUsers = this.listOfUsers
-        );
+        try {
+          await this.$http.delete(`/users/${removeId}`);
+          const index = this.listOfUsers.findIndex(user => user.id_user == removeId)
+          this.listOfUsers.splice(index, 1)
+        } catch (error) {
+          alert(error);
+        }
+      }
+    },
+    async loadUsers() {
+      try {
+        const request = await this.$http.get("/users");
+        this.listOfUsers = request.data.content;
+      } catch (error) {
+        alert(error);
       }
     }
   },

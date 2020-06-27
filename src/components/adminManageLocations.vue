@@ -12,17 +12,19 @@
           <tr>
             <th scope="col">Id</th>
             <th scope="col">Nome</th>
-            <th scope="col">Coordenadas</th>
+            <th scope="col">Descrição</th>
+            <th scope="col">Tipo Localização</th>
             <th scope="col">Operações</th>
           </tr>
         </thead>
         <tbody>
-          <tr v-for="location in filteredLocation" v-bind:key="location">
-            <td>{{location.id}}</td>
-            <td>{{location.Name}}</td>
-            <td>{{location.Coordenates}}</td>
+          <tr v-for="localizacao in filteredLocation" v-bind:key="localizacao">
+            <td>{{localizacao.id_localizacao}}</td>
+            <td>{{localizacao.nome}}</td>
+            <td>{{localizacao.descricao}}</td>
+            <td>{{localizacao.tipo_localizacao}}</td>
             <td>
-              <v-btn v-on:click="removeUser(location.Name)">REMOVER</v-btn>
+              <v-btn v-on:click="removeLocation(localizacao.id_localizacao)">REMOVER</v-btn>
             </td>
           </tr>
         </tbody>
@@ -40,24 +42,35 @@ export default {
     };
   },
   created() {
-    this.listLocations = this.$store.getters.getAllLocations;
+    this.loadLocations()
   },
   methods: {
-    removeUser(name) {
+    async removeLocation(removeId) {
       if (confirm("Deseja mesmo remover esta localização?")) {
-        this.listLocations = this.listLocations.filter(
-          location => location.Name !== name,
-          (this.$store.state.listLocations = this.listLocations)
-        );
+        try {
+          await this.$http.delete(`/location/${removeId}`);
+          const index = this.listLocations.findIndex(localizacao => localizacao.id_localizacao == removeId)
+          this.listLocations.splice(index, 1)
+        } catch (error) {
+          alert(error);
+        }
+      }
+    },
+    async loadLocations() {
+      try {
+        const request = await this.$http.get("/location");
+        this.listLocations = request.data.content;
+      } catch (error) {
+        alert(error);
       }
     }
   },
   computed: {
     filteredLocation() {
-      return this.listLocations.filter(location => {
+      return this.listLocations.filter(localizacao => {
         let filteredLocationNameResult = true;
         if (this.filterLocation !== "") {
-          filteredLocationNameResult = location.Name.includes(this.filterLocation);
+          filteredLocationNameResult = localizacao.nome.includes(this.filterLocation);
         }
         return filteredLocationNameResult;
       });
