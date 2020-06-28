@@ -211,7 +211,6 @@ export default {
               this.travelMode
             );
             this.routeChecked = true;
-            this.addRoute();
           });
         }
       } else {
@@ -229,7 +228,6 @@ export default {
                 this.travelMode
               );
               this.routeChecked = true;
-              this.addRoute();
             } else {
               alert("Geocode was not sucessfull" + status);
             }
