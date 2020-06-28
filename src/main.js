@@ -9,7 +9,7 @@ import vuetify from './plugins/vuetify';
 import axios from 'axios';
 
 const http = axios.create({
-  baseURL: "http://localhost:3000"
+  baseURL: "https://smartroute-esmad.herokuapp.com"
 })
 Vue.prototype.$http = http;
 
