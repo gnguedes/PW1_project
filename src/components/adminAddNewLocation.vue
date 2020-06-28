@@ -3,11 +3,11 @@
     <!-- Card body -->
     <div class="card-body">
       <div>
-        <form v-on:submit.prevent="pushLocation">
+        <form v-on:submit.prevent="addLocation()">
           <div class="form-row">
             <div class="col-md-6">
               <label>Nome:</label>
-              <input type="text" class="form-control" v-model="txtLocationName" placeholder="Nome"/>
+              <input type="text" class="form-control" v-model="txtLocationName" placeholder="Nome" />
             </div>
             <div class="col-md-6">
               <label>Descrição</label>
@@ -22,10 +22,11 @@
           <div class="form-group">
             <label for="type">Tipo de localização</label>
             <select class="form-control" id="type" v-model="typeLoc">
-              <option value="museum">Museus</option>
-              <option value="restaurant">Restaurantes</option>
-              <option value="tourist_attraction">Monumentos e atrações turísticas</option>
-              <option value="art_gallery">Galerias de arte</option>
+              <option
+                v-for="locationType in locationTypes"
+                :value="locationType.id_tipo_localizacao"
+                :key="locationType.id_tipo_localizacao"
+              >{{ locationType.tipo_localizacao }}</option>
             </select>
           </div>
           <div class="col-md-6">
@@ -53,13 +54,21 @@ export default {
       typeLoc: "",
       urlImg: "",
       listLocation: [],
+      locationTypes: [],
       locationChecked: false
     };
   },
   created() {
     this.listLocation = this.$store.getters.getAllLocations;
+    this.loadRouteTypes();
   },
   methods: {
+    reset() {
+      this.txtLocationName = "";
+      this.txtLocDescription = "";
+      this.typeLoc = "";
+      this.urlImg = "";
+    },
     getLastLocationId() {
       if (this.listLocation.length) {
         return this.listLocation[this.listLocation.length - 1].id;
@@ -71,7 +80,7 @@ export default {
       if (this.listLocation.length) {
         for (const location of this.listLocation) {
           if (location.Name == this.txtLocationName) {
-            this.locationChecked = false
+            this.locationChecked = false;
             alert("nome de localização indisponivel");
           } else {
             this.locationChecked = true;
@@ -81,28 +90,34 @@ export default {
     },
     getCoordenates() {
       let geocoder = new google.maps.Geocoder();
-      geocoder.geocode({ address: this.txtLocationName }, (results2, status) => {
-        if (status == "OK") {
-          return results2[0].geometry.location;
+      geocoder.geocode(
+        { address: this.txtLocationName },
+        (results2, status) => {
+          if (status == "OK") {
+            return results2[0].geometry.location;
+          }
         }
-      });
+      );
     },
-
-    pushLocation() {
-      this.checkLocationName();
-      alert(this.locationChecked)
-      if (this.locationChecked == true) {
-        this.$store.commit("ADD_LOCATION", {
-          id: this.getLastLocationId() + 1,
-          Name: this.txtLocationName,
-          Coordenates: this.getCoordenates(),
-          Description: this.txtLocDescription,
-          Type: this.typeLoc,
-          imgLink: this.urlImg
+    async addLocation() {
+      try {
+        await this.$http.post("/location", {
+          nome: this.txtLocationName,
+          descricao: this.txtLocDescription,
+          id_tipo_localizacao: this.typeLoc,
+          imagem: this.urlImg
         });
-        this.$router.push({ name: "adminLocations" });
-      } else {
-        alert("erro no registo");
+        this.reset();
+      } catch (error) {
+        alert("Erro em guardar a localização");
+      }
+    },
+    async loadRouteTypes() {
+      try {
+        const request = await this.$http.get("/locationType/");
+        this.locationTypes = request.data.content;
+      } catch (error) {
+        alert(error);
       }
     }
   }

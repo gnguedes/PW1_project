@@ -4,7 +4,7 @@
   <div class="card mx-xl-5">
     <!-- Card body -->
     <div class="card-body">
-      <form v-on:submit.prevent="addUser">
+      <form v-on:submit.prevent="addUser()">
         <p class="h4 text-center mb-4"></p>
         <label for="txtUsername" class="grey-text">Nome de utilizador</label>
         <input type="text" id="txtUsername" class="form-control" v-model="txtName" />
@@ -34,16 +34,20 @@ export default {
       txtEmail: "",
       txtPassword: "",
       txtCheckPassword: "",
-      listUsers: [],
       userChecked: false,
       loggedUserId: ""
     };
   },
   created() {
-    this.listUsers = this.$store.getters.getAllUsers;
     this.loggedUserId = this.$store.getters.getLoggedUserId;
   },
   methods: {
+    reset() {
+      this.txtName = "";
+      this.txtEmail = "";
+      this.txtPassword = "";
+      this.txtCheckPassword = "";
+    },
     checkPassword() {
       if (this.txtPassword == this.txtCheckPassword && this.txtPassword != "") {
         this.userChecked = true;
@@ -52,40 +56,32 @@ export default {
         this.userChecked = false;
       }
     },
-    checkUsername() {
-      if (this.listUsers.length) {
-        for (const user of this.listUsers) {
-          if (user.Name == this.txtName) {
-            this.userChecked = false;
-            alert("nome de utilizador indisponivel");
-          } else {
-            this.userChecked = true;
-          }
+    async addUser() {
+      this.checkPassword();
+      if (this.userChecked) {
+        try {
+          await this.$http.put(`/users/${this.loggedUserId}`, {
+            name: this.txtName,
+            email: this.txtEmail,
+            password: this.txtPassword
+          });
+          this.reset();
+          const request = await this.$http.get("/users");
+          const users = request.data.content.map(user => {
+            return {
+              id: user.id,
+              Name: user.name,
+              Email: user.email,
+              Password: user.password
+            };
+          });
+          this.$store.state.listUsers = users;
+          alert(this.$store.state.listUsers);
+          alert("Alteração bem sucedida");
+        } catch (error) {
+          alert("Erro em guardar Utilizador");
         }
       }
-    },
-    addUser() {
-      this.checkUsername();
-      if (this.userChecked == true) {
-        for (const user of this.listUsers) {
-          if (user.id == this.loggedUserId) {
-            if (this.txtName != "") {
-              user.Name = this.txtName;
-            }
-            if (this.txtEmail != "") {
-              user.Email = this.txtEmail;
-            }
-            if (this.txtPassword != "") {
-              this.checkPassword();
-              if (this.userChecked == true) {
-                user.Password = this.txtPassword;
-              }
-            }
-          }
-        }
-      }
-      alert("Alteração bem sucedida")
-      this.$store.state.listUsers = this.listUsers;
     }
   }
 };
