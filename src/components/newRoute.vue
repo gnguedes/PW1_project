@@ -179,6 +179,7 @@ export default {
     /*--------------------------------------------------*/
     //criar o mapa com a rota traçada
     initMap() {
+      this.addRoute();
       let map = new google.maps.Map(document.querySelector("#myMap"), {
         center: { lat: 41.148481, lng: -8.606893 },
         zoom: 15

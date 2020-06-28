@@ -118,7 +118,6 @@ export default new Vuex.Store({
         Type: "art_gallery",
         imgLink: "https://lh5.googleusercontent.com/p/AF1QipOO66SAN3Ei0kOeHZGZ_l1beb0UCoxGPgGS5f6E=w408-h306-k-no"
       }
-
     ],
     listRoutes: []
   },

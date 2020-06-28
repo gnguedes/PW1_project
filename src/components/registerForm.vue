@@ -1,6 +1,6 @@
 <template>
   <div id="frmRegister">
-    <form v-on:submit.prevent="pushUser">
+    <form v-on:submit.prevent="addUser()">
       <div class="form-row">
         <div class="col-md-6">
           <label>Nome de Utilizador</label>
@@ -72,34 +72,17 @@ export default {
         this.userChecked = false;
       }
     },
-
-    //verificar se o nome de utilizador esta disponivel
-    checkUsername() {
-      if (this.listUsers.length) {
-        for (const user of this.listUsers) {
-          if (user.Name == this.txtName) {
-            (this.userChecked = false),
-              alert("nome de utilizador indisponivel");
-          } else {
-            this.userChecked = true;
-          }
-        }
-      }
-    },
-    //enviar o utilizador para a loja se nao houver erros
-    pushUser() {
+    async addUser() {
       this.checkPassword();
-      this.checkUsername();
-      if (this.userChecked == true) {
-        this.$store.commit("ADD_USER", {
-          id: this.getLastId() + 1,
-          Name: this.txtName,
-          Email: this.txtEmail,
-          Password: this.txtPassword
+      try {
+        await this.$http.post("/auth/sign-up", {
+          name: this.txtName,
+          email: this.txtEmail,
+          password: this.txtPassword,
         });
         this.$router.push({ name: "login" });
-      } else {
-        alert("erro no registo");
+      } catch (error) {
+        alert("O registo não foi concluido");
       }
     }
   }

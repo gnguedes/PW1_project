@@ -39,7 +39,6 @@ export default {
   },
   created() {
     this.loadLocations();
-
   },
   methods:{
     async loadLocations(){

@@ -45,7 +45,7 @@ export default {
     },
     //verifica se o user e o admin ou nao
     checkUserType() {
-      if (this.loggedUserId == 5) {
+      if (this.loggedUserId == 1) {
         this.visible = true;
       }
     }

@@ -29,9 +29,19 @@
               >{{ locationType.tipo_localizacao }}</option>
             </select>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-12">
             <label>Imagem</label>
             <input type="url" class="form-control" v-model="urlImg" placeholder="Link da imagem" />
+          </div>
+          <div class="form-row">
+            <div class="col-md-6">
+              <label>Longitude</label>
+              <input type="text" class="form-control" v-model="latitude" placeholder="Longitude" />
+            </div>
+            <div class="col-md-6">
+              <label>Latitude</label>
+              <input type="text" class="form-control" v-model="longitude" placeholder="Latitude" />
+            </div>
           </div>
           <div class="form-group row">
             <div class="col-auto">
@@ -53,6 +63,8 @@ export default {
       txtLocDescription: "",
       typeLoc: "",
       urlImg: "",
+      longitude: "",
+      latitude: "",
       listLocation: [],
       locationTypes: [],
       locationChecked: false
@@ -105,7 +117,9 @@ export default {
           nome: this.txtLocationName,
           descricao: this.txtLocDescription,
           id_tipo_localizacao: this.typeLoc,
-          imagem: this.urlImg
+          imagem: this.urlImg,
+          latitude: this.latitude,
+          longitude: this.longitude
         });
         this.reset();
       } catch (error) {
