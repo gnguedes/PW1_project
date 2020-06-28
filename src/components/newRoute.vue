@@ -113,7 +113,7 @@ export default {
     },
     //adicionar a rota a loja
     async addRoute() {
-     try {
+      try {
         await this.$http.post("/routes", {
           idPontoPartida: this.startPosition,
           idTipoTransporte: this.travelMode,
@@ -122,7 +122,7 @@ export default {
           numPessoas: this.numPeople
         });
         this.reset();
-      } catch(error) {
+      } catch (error) {
         alert("Erro em guardar a rota");
       }
     },
@@ -179,7 +179,6 @@ export default {
     /*--------------------------------------------------*/
     //criar o mapa com a rota traçada
     initMap() {
-      this.addRoute();
       let map = new google.maps.Map(document.querySelector("#myMap"), {
         center: { lat: 41.148481, lng: -8.606893 },
         zoom: 15
@@ -211,7 +210,7 @@ export default {
               this.travelMode
             );
             this.routeChecked = true;
-           
+            this.addRoute();
           });
         }
       } else {
