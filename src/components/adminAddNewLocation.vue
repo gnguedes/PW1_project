@@ -80,6 +80,8 @@ export default {
       this.txtLocDescription = "";
       this.typeLoc = "";
       this.urlImg = "";
+      this.longitude = "";
+      this.latitude = "";
     },
     getLastLocationId() {
       if (this.listLocation.length) {
